@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+<title>Diablo 3 Gem Calculator</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A simple and powerful legendary gem and paragon calculator for Diablo 3. Featured on the Official Battle.net news feed." />
+<link type="text/css" href="system/css/stylesheet.css" rel="stylesheet" />
+<link type="text/css" href="//us.battle.net/d3/static/css/tooltips.css" rel="stylesheet"/ >
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="system/js/script.js"></script>
+</head>
+
+<body onLoad="loadNumbers(); xpLabels();">
+
+<header>
+ <h1><span>D<span>iablo</span>&nbsp;3</span></h1>
+ <h2>Legendary&nbsp;Gem &amp; Paragon&nbsp;Calculator</h2>
+</header>
+
+<form>
+
+ <section>
+  <div class="column third stretch">
+   <h3>Select A Gem</h3>
+  </div>
+  <div class="filters column twothird tright stretch">
+   <div class="normal inline xsmall tmiddle">Season</div> <span data-season="1" title="2.1">1</span> <span data-season="2" title="2.1.2">2</span> <span data-season="3" title="2.2">3</span> <span data-season="4" title="2.3">4</span> <span data-season="5" title="2.4">5</span> <span data-season="6" title="2.4.1">6</span> <span data-season="7" title="2.4.2">7</span> <span data-season="9" title="2.4.3">9</span> <span data-season="18" title="2.6.6">18</span> <span data-season="28" class="clicked">Live</span>
+  </div>
+ </section>
+
+ <section class="gems nogutter pad-top">
+  <div class="column seventh"><img data-gem="1"  src="/img/1.png" title="Bane of the Powerful" class="clicked season1 season6" /></div>
+  <div class="column seventh"><img data-gem="20" src="/img/20.png" title="Bane of the Stricken" class="season4" /></div>
+  <div class="column seventh"><img data-gem="2"  src="/img/2.png" title="Bane of the Trapped" class="season1" /></div>
+  <div class="column seventh"><img data-gem="14" src="/img/14.png" title="Boon of the Hoarder" class="season1" /></div>
+  <div class="column seventh"><img data-gem="21" src="/img/21.png" title="Boyarsky's Chip" class="season5" /></div>
+  <div class="column seventh"><img data-gem="3"  src="/img/3.png" title="Enforcer" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="15" src="/img/15.png" title="Esoteric Alteration" class="season2" /></div>
+  <div class="column seventh"><img data-gem="16" src="/img/16.png" title="Gem of Ease" class="season2" /></div>
+  <div class="column seventh"><img data-gem="4"  src="/img/4.png" title="Gem of Efficacious Toxin" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="5"  src="/img/5.png" title="Gogok of Swiftness" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="18" src="/img/18.png" title="Iceblink" class="season3" /></div>
+  <div class="column seventh"><img data-gem="6"  src="/img/6.png" title="Invigorating Gemstone" class="season1 season7" /></div>
+  <div class="column seventh"><img data-gem="23"  src="/img/23.png" title="Legacy of Dreams" class="season18" /></div>
+  <div class="column seventh"><img data-gem="7"  src="/img/7.png" title="Mirinae, Teardrop of the Starweaver" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="17" src="/img/17.png" title="Molten Wildebeest's Gizzard" class="season2" /></div>
+  <div class="column seventh"><img data-gem="8"  src="/img/8.png" title="Moratorium" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="19" src="/img/19.png" title="Mutilation Guard" class="season3" /></div>
+  <div class="column seventh"><img data-gem="9"  src="/img/9.png" title="Pain Enhancer" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="22"  src="/img/22.png" title="Red Soulstone Shard" class="season9" /></div>
+  <div class="column seventh"><img data-gem="10" src="/img/10.png" title="Simplicity's Strength" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="11" src="/img/11.png" title="Taeguk" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="12" src="/img/12.png" title="Wreath of Lightning" class="season1 season6" /></div>
+  <div class="column seventh"><img data-gem="13" src="/img/13.png" title="Zei's Stone of Vengeance" class="season1 season6" /></div>
+ </section>
+
+ <div class="breaker"></div>
+ 
+ <section>
+  <div class="column half">
+   <h3>Gem Calculator</h3>
+  </div>
+  <div class="column half tright">
+   <span class="clearform">Reset</span>
+  </div>
+ </section>
+
+ <section class="pad-top">
+  <div class="column half tleft">
+   <div id="diablo-item">
+    <div class="d3-tooltip d3-tooltip-item">
+     <div class="tooltip-head tooltip-head-orange">
+      <h3 class="d3-color-orange"></h3>
+     </div>
+     <div class="tooltip-body">
+      <div class="d3-item-properties">
+       <div class="item-description d3-color-white">
+        <p class="item-type-right d3-color-gray levelcap"></p>
+        <p class="d3-color-orange">Legendary Gem</p>
+       <ul class="item-effects">
+        <li class="d3-color-gray d3-item-property-default"><p>Can be inserted into <span class="property-0"></span> with sockets.</p></li>
+       </ul>
+       </div>
+       <div class="item-before-effects"></div>
+       <ul class="item-effects">
+        <li class="d3-color-orange d3-item-property-default d3-item-property-utility"><p class="property-1"></p></li>
+        <li class="level25 d3-color-gray d3-item-property-default d3-item-property-utility"><p class="property-2"><span class="prop"></span><span class="required d3-color-red">&nbsp;(Requires Rank 25)</span></p></li>
+       </ul>
+      </div>
+      <div class="tooltip-extension">
+       <div class="flavor"><p class="property-3"></p></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+  <div class="column half">
+    <div class="column pad-bottom">
+     <div class="column tleft">Gem Rank</div>
+     <div class="gemjump tright collapse">
+     <span class="minus left">3</span><span class="plus">3</span>
+     <input type="number" pattern="[0-9]*" min="0" max="150" value="0" oninput="loadNumbers()" id="gem" />
+     </div>
+    </div>
+
+    <div class="column pad-bottom">
+     <div class="column half tleft">Rift Level</div>
+     <div class="column half tright"><span id="shards"></span></div>
+     <input type="number" pattern="[0-9]*" min="1" max="150" value="1" oninput="loadNumbers()" id="riftlevel" />
+    </div>
+
+    <div class="column toggle">
+     <div class="nicebox tleft"><div class="checkbox"><input type="checkbox" id="empowered" /><label for="empowered"></label></div><span class="small">Empowered</span></div>
+    </div>
+    <div class="column toggle">
+     <div class="nicebox tleft"><div class="checkbox"><input type="checkbox" id="freerank" /><label for="freerank"></label></div><span class="small">No-Death Bonus</span></div>
+    </div>
+    <div class="column toggle pad-bottom">
+     <div class="nicebox tleft"><div class="checkbox"><input type="checkbox" id="upgrade" /><label for="upgrade"></label></div><span class="small">100% Upgrade</span></div>
+    </div>
+
+  </div>
+
+ </section>
+ 
+ <div class="breaker toggle"></div>
+
+ <section class="pad-top toggle">
+  <h3>Upgrade Chances</h3>
+ </section>
+
+ <section class="chances toggle">
+  <div class="column adjust stay">
+   <input type="text" id="rank0" value="60" disabled /><span id="plus0">1</span>
+  </div>
+  <div class="column adjust stay">
+   <input type="text" id="rank1" value="60" disabled /><span id="plus1">2</span>
+  </div>
+  <div class="column adjust stay">
+   <input type="text" id="rank2" value="30" disabled /><span id="plus2">3</span>
+  </div>
+  <div class="column adjust stay">
+   <input type="text" id="rank3" value="15" disabled /><span id="plus3">4</span>
+  </div>
+  <div class="column adjust stay">
+   <input type="text" id="rank4" value="8" disabled /><span id="plus4">5</span>
+  </div>
+ </section>
+  
+ <section class="pad-top toggle">
+  <h3>Upgrade Probability</h3>
+ </section>
+
+ <section class="probability toggle">
+  <div class="column third stay">
+   <input type="text" id="probability-SSS" value="0" disabled />
+   <span>Win All</span>
+  </div>
+  <div class="column third stay">
+   <input type="text" id="probability-GT0" value="0" disabled />
+   <span>Win Some</span>
+  </div>
+  <div class="column third stay">
+   <input type="text" id="probability-FFF" value="0" disabled />
+   <span>Lose All</span>
+  </div>
+ </section>
+
+</form>
+
+<form>
+
+ <section>
+  <div class="column half">
+   <h3>Paragon Calculator</h3>
+  </div>
+  <div class="column half tright">
+   <span class="clearform">Reset</span></div>
+  </div>
+ </section>
+
+ <section class="pad-top pad-left">
+  <div class="column full tleft">
+   <div class="nicebox inline-block"><div class="checkbox"><input type="checkbox" id="showxp" /><label for="showxp"></label></div><span class="small">advanced</span></div>
+  </div>
+ </section>
+
+ <section class="bnetform pad-top">
+  <div class="column quarter tcenter stretch">
+   <input oninput="checkBattlenet()" class="pad-top" placeholder="battletag#0123" type="text" name="battletag" id="battletag" />
+  </div>
+  <div class="column half">
+   <div class="column quarter">
+    <div class="nicebox"><div class="checkbox radio"><input onchange="checkBattlenet()" type="checkbox" id="regionUS" class="region" /><label for="regionUS"></label></div><span class="xsmall">US</span></div>
+    <div class="nicebox"><div class="checkbox radio"><input onchange="checkBattlenet()" type="checkbox" id="regionEU" class="region" /><label for="regionEU"></label></div><span class="xsmall">EU</span></div>
+   </div>
+   <div class="column quarter">
+    <div class="nicebox"><div class="checkbox radio"><input onchange="checkBattlenet()" type="checkbox" id="regionTW" class="region" /><label for="regionTW"></label></div><span class="xsmall">TW</span></div>
+    <div class="nicebox"><div class="checkbox radio"><input onchange="checkBattlenet()" type="checkbox" id="regionKR" class="region" /><label for="regionKR"></label></div><span class="xsmall">KR</span></div>
+   </div>
+   <div class="column half">
+    <div class="nicebox"><div class="checkbox radio"><input onchange="checkBattlenet()" type="checkbox" id="softcore" class="difficulty" /><label for="softcore"></label></div><span class="xsmall">Softcore</span></div>
+    <div class="nicebox"><div class="checkbox radio"><input onchange="checkBattlenet()" type="checkbox" id="hardcore" class="difficulty" /><label for="hardcore"></label></div><span class="xsmall">Hardcore</span></div>
+   </div>
+  </div>
+  <div class="column quarter tcenter stretch">
+   <input class="pad-top" type="submit" value="submit" id="bnetSubmit" disabled="disabled" />
+  </div>
+ </section>
+ 
+ <div class="breaker"></div>
+
+ <section class="paragoncalc">
+  <div class="column third stay">
+   <input type="number" pattern="[0-9]*" min="0" value="" placeholder="0" id="level_nonseason" />
+   <label id="level_nonseason_label">0</label>
+   <span>Non-Season</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" pattern="[0-9]*" min="0" value="" placeholder="0" id="level_season" />
+   <label id="level_season_label">0</label>
+   <span>Season</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" id="level_new" min="0" value="0" disabled />
+   <label id="level_new_label">0</label>
+   <span>New Level</span>
+  </div>
+ </section>
+
+ <section class="paragoncalc">
+  <div class="column third stay">
+   <input type="number" pattern="[0-9]*" min="0" value="" placeholder="0" id="level_desired" />
+   <label id="level_desired_label">0</label>
+   <span>Desired Level</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" pattern="[0-9]*" min="0" value="" placeholder="0" id="level_nonseason2" />
+   <label id="level_nonseason2_label">0</label>
+   <span>Current Level</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" id="level_required" min="0" value="0" disabled />
+   <label id="level_required_label">0</label>
+   <span>Levels Needed</span>
+  </div>
+ </section>
+
+ <section class="paragoncalc advanced">
+  <div class="column third stay">
+   <input type="number" pattern="[0-9]*" min="0" value="15" placeholder="0" id="xphour" />
+   <span>Billions XP/Hour</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" pattern="[0-9]*" min="1" max="24" step="1" value="2" id="playhours" />
+   <span>Hours/Day</span>
+  </div>
+  <div class="column third stay">
+   <input type="text" placeholder="0" id="timerequired" disabled />
+   <label id="time_required_label">0 hours</label>
+   <span>Time Required</span>
+  </div>
+ </section>
+ 
+</form>
+
+<form id="augment" class="hide">
+
+ <section>
+  <div class="column twothird">
+   <h3>caldesann's despair</h3>
+  </div>
+  <div class="column third tright">
+   <span class="clearform">Reset</span>
+  </div>
+ </section>
+ 
+ <section class="pad-top">
+  <div class="column third tleft pad-left">
+   <div class="nicebox inline-block"><div class="checkbox"><input type="checkbox" id="showNodeath" /><label for="showNodeath"></label></div><span class="small">no-death bonus</span></div>
+  </div>
+  <div class="column third tleft pad-left">
+   <div class="nicebox inline-block"><div class="checkbox"><input type="checkbox" id="showEmpowered" /><label for="showEmpowered"></label></div><span class="small">empowered</span></div>
+  </div>
+ </section>
+ 
+ <section class="pad-top">
+  <div class="column third stay">
+   <input type="number" class="ancients" value="1" min="1" max="13" /><span>Ancient Items</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" class="gemlevel" value="125" min="125" /><span>Desired Gem Rank</span>
+  </div>
+  <div class="column third">
+   <input type="number" class="howfast" value="15" min="1" max="15" /><span>Grift <span id="timegrift">7</span> clear time</span>
+  </div>
+ </section>
+ 
+ <section>
+  <div class="column third stay">
+   <input type="number" class="totallevel" value="1" disabled /><span>Total Ranks</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" class="statsone" value="625" disabled /><span>Stats per Item</span>
+  </div>
+  <div class="column third stay">
+   <input type="number" class="statsall" value="625" disabled /><span>Total Stats</span>
+  </div>
+ </section>
+
+ <section class="normal">
+  <div class="column half stay">
+   <input type="number" class="grifts" value="1" disabled /><span>Greater Rifts</span>
+  </div>
+  <div class="column half stay">
+   <input type="text" class="estimatedtime" value="0:15" disabled /><span>Est. Time (HH:MM)</span>
+  </div>
+ </section>
+
+ <section class="empowered">
+  <div class="column third stay">
+   <input type="number" class="egrifts" value="0" disabled /><span>Greater Rifts</span>
+  </div>
+  <div class="column third stay">
+   <input type="text" class="empestimatedtime" value="0:00" disabled /><span>Est. Time (HH:MM)</span>
+  </div>
+  <div class="column third stay">
+   <input type="text" class="maxgold" value="0" disabled /><span>Gold Cost</span>
+  </div>
+ </section>
+
+</form>
+ 
+<form>
+
+ <section>
+  <h3>Stat Gem Calculator</h3>
+ </section>
+
+ <section class="statgems pad-top">
+  <div class="column fifth">
+   <input type="number" class="statgem" data-stat-gem="1" value="0" min="0" /><label class="invisible"><span class="gemgold" data-stat-gold="1">0</span><img src="/system/img/gold.png" /></label><span><img class="gemimg" title="Marquise Gem" src="/img/s5.png" /></span>
+  </div>
+  <div class="column fifth">
+   <input type="number" class="statgem" data-stat-gem="2" value="0" min="0" /><label><span class="gemgold" data-stat-gold="2">0</span><img src="/system/img/gold.png" /></label><span><img class="gemimg" title="Imperial Gem" src="/img/s4.png" /></span>
+  </div>
+  <div class="column fifth">
+   <input type="number" class="statgem" data-stat-gem="3" value="0" min="0" /><label><span class="gemgold" data-stat-gold="3">0</span><img src="/system/img/gold.png" /></label><span><img class="gemimg" title="Flawless Imperial Gem" src="/img/s3.png" /></span>
+  </div>
+  <div class="column fifth">
+   <input type="number" class="statgem" data-stat-gem="4" value="0" min="0" /><label><span class="gemgold" data-stat-gold="4">0</span><img src="/system/img/gold.png" /><span class="gemdb" data-stat-db="4">0</span><img src="/system/img/db.png" /></label><span><img class="gemimg" title="Royal Gem" src="/img/s2.png" /></span>
+  </div>
+  <div class="column fifth">
+   <input type="number" class="statgem" data-stat-gem="5" value="0" min="0" /><label><span class="gemgold" data-stat-gold="5">0</span><img src="/system/img/gold.png" /><span class="gemdb" data-stat-db="5">0</span><img src="/system/img/db.png" /></label><span><img class="gemimg" title="Flawless Royal Gem" src="/img/s1.png" /></span>
+  </div>
+ </section>
+ 
+ <div id="statgem-debug"></div>
+
+</form>
+
+<form>
+
+ <section>
+  <h3>Site Updates</h3>
+ </section>
+ 
+ <section class="pad-top">
+  <ul class="update">
+   <li class="new"><span class="date">November 21<sup>st</sup>, 2024</span><p>Published code to Github repo for hosting.</p></li>
+   <li class="fix"><span class="date">May 23<sup>rd</sup>, 2023</span><p>Code optimizations and rebuilds.</p></li>
+   <li class="fix"><span class="date">May 20<sup>th</sup>, 2023</span><p>Repaired Blizzard API function of Paragon Level Calculator.</p></li>
+   <li class="new"><span class="date">October 31<sup>st</sup>, 2020</span><p>Migrated to new web host.</p></li>
+   <li class="new"><span class="date">July 29<sup>th</sup>, 2019</span><p>Added Legacy of Dreams legendary gem with details from PTR 2.6.6.</p></li>
+   <li class="fix"><span class="date">May 1<sup>st</sup>, 2019</span><p>The Wreath of Lightning gem was displaying a starting value of <span class="d3-color-blue">1,200%</span>. Corrected the value to <span class="d3-color-blue">1,250%</span>. Thanks Matt.</p></li>
+   <li class="omg"><span class="date">March 27<sup>th</sup>, 2015</span><p>Senpai noticed me! <a class="normal" href="https://us.diablo3.blizzard.com/en-us/blog/18486732" target="_blank">My web app was mentioned on the official battle.net news page!</a></p></li>
+  </ul>
+ </section>
+
+</form>
+
+<footer>
+ <h3 class="tcenter">Thank you for using my website!</h3>
+ <p class="xsmall red pad-top"><strong>over a million nephalem and counting</strong></p>
+ <p class="xsmall pad-top"><a target="_blank" href="mailto:dewm@dewmguy.com">Email</a> - <a href="https://www.diablo2runecalculator.com" target="_blank">Diablo 2 Rune Calculator</a></p>
+ <p class="copyright">&copy; 2024 DewmGuy. This website does not record any data. Images belong to Blizzard Entertainment, Inc.</p>
+</footer>
+
+<script src="system/js/paragon.js"></script>
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
+ (window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-60456908-2', 'auto'); ga('send', 'pageview');
+</script>
+
+</body>
+</html>
