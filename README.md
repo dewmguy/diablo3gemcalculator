@@ -6,16 +6,14 @@ Diablo 3 Gem Calculator web app provides an interface for displaying the propert
 
 Make a selection of a legendary gem in the panel to show the properties of that gem in the item tooltip. Use the season filter option to show the gems that were added during that season. Legendary gems may have different properties in various seasons.
 
-Input the rank of your gem to quickly see the properties of the gem at a given level.
+1. Input the rank of your gem to quickly see the properties of the gem at a given rank.
 
-Input the level of the greater rift you intend to run in order to level the gem.
+2. Input the level of the greater rift you intend to run in order to upgrade the gem. The blood shard capacity will dynamically adjust to the greater rift level you enter.
 
-The blood shard capacity will dynamically adjust to the rift level you enter.
-
-Checkmark the appropriate calculator modifiers relative to the goals of leveling your legendary gem.
+3. Checkmark the appropriate calculator modifiers relative to the goals of upgrading your legendary gem.
 
 - **Empowered**: Checking this box will add another roll to your upgrade chances. Empowering a greater rift provides an additional opportunity to level a legendary gem when the greater rift is completed within the time limit.
-- **No-Death Bonus**: Checking this box will add annother roll to your upgrade chances. An additional opportunity to level a legendary gem is given to you when the greater rift is completed within the time limit, and you did not die a single time in the attempt.
+- **No-Death Bonus**: Checking this box will add annother roll to your upgrade chances. An additional opportunity to upgrade a legendary gem is given to you when the greater rift is completed within the time limit, and if you did not die a single time in the attempt.
 - **100% Upgrade**: Checking this box will automatically adjust the value of the Rift Level input to show the level of greater rift required to get 100% chance to upgrade on every roll of your legendary gem.
 
 ### Upgrade Chances
