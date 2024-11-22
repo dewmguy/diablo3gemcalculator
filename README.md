@@ -26,8 +26,6 @@ The boxes in this section indicate the probabilities of the rolls available to y
 
 ## Paragon Calculator
 
-Input your battle.net battle tag into the input box, choose the realm and game style, and press submit. The form will connect to the battle.net api to extract your paragon levels for the current season and non-season, and automatically populate the inputs below, where applicable.
-
 The first calculation method accepts your current non-season level with your current or desired season level to output what your non-season level will be once the current season has ended.
 
 The second calculation method accepts your desired season level and your current non-season level to output the number of levels you need to achieve in the current season to reach the non-season level you desire.
