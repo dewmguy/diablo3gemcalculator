@@ -12,9 +12,9 @@ Make a selection of a legendary gem in the panel to show the properties of that 
 
 3. Checkmark the appropriate calculator modifiers relative to the goals of upgrading your legendary gem.
 
-- **Empowered**: Checking this box will add another roll to your upgrade chances. Empowering a greater rift provides an additional opportunity to level a legendary gem when the greater rift is completed within the time limit.
-- **No-Death Bonus**: Checking this box will add annother roll to your upgrade chances. An additional opportunity to upgrade a legendary gem is given to you when the greater rift is completed within the time limit, and if you did not die a single time in the attempt.
-- **100% Upgrade**: Checking this box will automatically adjust the value of the Rift Level input to show the level of greater rift required to get 100% chance to upgrade on every roll of your legendary gem.
+ - **Empowered**: Checking this box will add another roll to your upgrade chances. Empowering a greater rift at the expense of gold provides an additional opportunity to upgrade a legendary gem when the greater rift is completed within the time limit.
+ - **No-Death Bonus**: Checking this box will add another roll to your upgrade chances. Completing a greater rift within the time limit and without dying provides an additional opportunity to upgrade a legendary gem.
+ - **100% Upgrade**: Checking this box will automatically adjust the value of the Rift Level input to show the level of greater rift required to get 100% chance to upgrade every roll of your legendary gem.
 
 ### Upgrade Chances
 
