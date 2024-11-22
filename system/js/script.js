@@ -577,16 +577,16 @@ function cleanInput(input,min,max) {
  return input;
 }
 
-function checkBattlenet() {
+/*function checkBattlenet() {
  var battletagobj = $('#battletag');
  var battletag = battletagobj.val();
  var button = $('#bnetSubmit');
  var regex = /^([a-z\u00C0-\u017F]{1}[a-z0-9\u00C0-\u017F]{2,11}#{1}[0-9]{4,8})$/i;
  if(regex.test(battletag) && $('.region').is(':checked') && $('.difficulty').is(':checked')) { button.attr('disabled',false).val('submit'); }
  battletag == "" ? battletagobj.removeClass('error shake') : regex.test(battletag) ? battletagobj.removeClass('error') : battletagobj.addClass('error');     
-}
+}*/
 
-function submitBattlenet() {
+/*function submitBattlenet() {
  let battletagobj = $('#battletag');
  let button = $('#bnetSubmit');
  let region = $('input.region:checked').attr('id');
@@ -611,7 +611,7 @@ function submitBattlenet() {
   }
   paragonCalc();
  });
-}
+}*/
 
 function statGemUp(gem,rank) {
  gem = parseInt(gem); 
@@ -658,7 +658,7 @@ $(document).ready(function() {
  $('.clearform').click(function() {
   $(this).closest('form')[0].reset();
   loadNumbers();
-  checkBattlenet();
+  //checkBattlenet();
   xpLabels();
   augmentCalcMod();
  });
@@ -728,8 +728,8 @@ $(document).ready(function() {
  $('.region').click(function() { $('.region').not(this).prop('checked',false); });
  $('.difficulty').click(function() { $('.difficulty').not(this).prop('checked', false); });
 
- $('#bnetSubmit').click(function(e) {
+ /*$('#bnetSubmit').click(function(e) {
   e.preventDefault();
   submitBattlenet();
- });
+ });*/
 });
